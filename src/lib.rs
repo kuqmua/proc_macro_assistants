@@ -22,21 +22,18 @@ pub fn generate_to_upper_camel_case(input: proc_macro::TokenStream) -> proc_macr
     } else {
         panic!("{proc_macro_name_camel_case_ident_stringified} does work only on structs!");
     };
-    let variants_matching_values_token_stream = data_enum
-        .variants
-        .iter()
-        .map(|variant| match &variant.fields {
-            syn::Fields::Unit => {
-                let variant_ident = &variant.ident;
-                let variant_ident_upper_camel_case_stringified = convert_case::Casing::to_case(&variant_ident.to_string(), convert_case::Case::UpperCamel);//todo rename all _camel_case to _upper_camel_case
-                let variant_ident_upper_camel_case_quotes_token_stream = proc_macro_helpers::generate_quotes::generate_quotes_token_stream(
-                    &variant_ident_upper_camel_case_stringified,
-                    &proc_macro_name_camel_case_ident_stringified,
-                );
-                quote::quote! {Self::#variant_ident => #variant_ident_upper_camel_case_quotes_token_stream}
-            },
-            _ => panic!("{proc_macro_name_camel_case} supported only syn::Fields::Unit"),
-        }).collect::<std::vec::Vec<proc_macro2::TokenStream>>();
+    let variants_matching_values_token_stream = data_enum.variants.iter().map(|variant| match &variant.fields {
+        syn::Fields::Unit => {
+            let variant_ident = &variant.ident;
+            let variant_ident_upper_camel_case_stringified = proc_macro_helpers::to_upper_camel_case::ToUpperCamelCase::to_upper_camel_case(&variant_ident.to_string());//todo rename all _camel_case to _upper_camel_case
+            let variant_ident_upper_camel_case_quotes_token_stream = proc_macro_helpers::generate_quotes::generate_quotes_token_stream(
+                &variant_ident_upper_camel_case_stringified,
+                &proc_macro_name_camel_case_ident_stringified,
+            );
+            quote::quote! {Self::#variant_ident => #variant_ident_upper_camel_case_quotes_token_stream}
+        },
+        _ => panic!("{proc_macro_name_camel_case} supported only syn::Fields::Unit"),
+    }).collect::<std::vec::Vec<proc_macro2::TokenStream>>();
     let gen = quote::quote! {
         impl #ident {
             fn to_camel_case(&self) -> &str {
