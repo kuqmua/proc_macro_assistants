@@ -25,7 +25,7 @@ pub fn generate_to_upper_camel_case(input: proc_macro::TokenStream) -> proc_macr
     let variants_matching_values_token_stream = data_enum.variants.iter().map(|variant| match &variant.fields {
         syn::Fields::Unit => {
             let variant_ident = &variant.ident;
-            let variant_ident_upper_camel_case_stringified = proc_macro_helpers::to_upper_camel_case::ToUpperCamelCase::to_upper_camel_case(&variant_ident.to_string());//todo rename all _camel_case to _upper_camel_case
+            let variant_ident_upper_camel_case_stringified = proc_macro_helpers::naming_conventions::ToUpperCamelCase::to_upper_camel_case(&variant_ident.to_string());//todo rename all _camel_case to _upper_camel_case
             let variant_ident_upper_camel_case_quotes_token_stream = proc_macro_helpers::generate_quotes::generate_quotes_token_stream(
                 &variant_ident_upper_camel_case_stringified,
                 &proc_macro_name_camel_case_ident_stringified,
