@@ -77,7 +77,7 @@ pub fn generate_to_snake_case(input: proc_macro::TokenStream) -> proc_macro::Tok
             let variant_ident_snake_case_stringified = proc_macro_helpers::naming_conventions::ToSnakeCase::to_snake_case(&variant_ident.to_string());
             let variant_ident_snake_case_quotes_token_stream = proc_macro_helpers::generate_quotes::generate_quotes_token_stream(
                 &variant_ident_snake_case_stringified,
-                &proc_macro_name_snake_case_ident_stringified,
+                &proc_macro_name_upper_camel_case_ident_stringified,
             );
             quote::quote! {Self::#variant_ident => #variant_ident_snake_case_quotes_token_stream}
         },
