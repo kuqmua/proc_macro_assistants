@@ -1,14 +1,16 @@
-///only works if all enum variants without fields like this
-/// #[derive(proc_macro_assistants::GenerateToUpperCamelCase)]
-/// enum Operation {
-///     One,
-///     Two,
-///     Three,
-/// }
-#[proc_macro_derive(GenerateToUpperCamelCase)]
-pub fn generate_to_upper_camel_case(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
+/*
+only works if all enum variants without fields like this
+#[derive(proc_macro_assistants::ToUpperCamelCase)]
+enum Operation {
+     One,
+     Two,
+     Three,
+}
+*/
+#[proc_macro_derive(ToUpperCamelCase)]
+pub fn to_upper_camel_case(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     proc_macro_helpers::panic_location::panic_location();
-    let proc_macro_name_upper_camel_case = "GenerateToUpperCamelCase";
+    let proc_macro_name_upper_camel_case = "ToUpperCamelCase";
     let ast: syn::DeriveInput = syn::parse(input).unwrap_or_else(|e| {
         panic!(
             "{proc_macro_name_upper_camel_case} {}: {e}",
@@ -47,17 +49,19 @@ pub fn generate_to_upper_camel_case(input: proc_macro::TokenStream) -> proc_macr
     gen.into()
 }
 
-///only works if all enum variants without fields like this
-/// #[derive(proc_macro_assistants::GenerateToSnakeCase)]
-/// enum Operation {
-///     One,
-///     Two,
-///     Three,
-/// }
-#[proc_macro_derive(GenerateToSnakeCase)]
-pub fn generate_to_snake_case(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
+/* 
+only works if all enum variants without fields like this
+ #[derive(proc_macro_assistants::ToSnakeCase)]
+ enum Operation {
+     One,
+     Two,
+     Three,
+ }
+*/
+#[proc_macro_derive(ToSnakeCase)]
+pub fn to_snake_case(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     proc_macro_helpers::panic_location::panic_location();
-    let proc_macro_name_upper_camel_case = "GenerateToSnakeCase";
+    let proc_macro_name_upper_camel_case = "ToSnakeCase";
     let ast: syn::DeriveInput = syn::parse(input).unwrap_or_else(|e| {
         panic!(
             "{proc_macro_name_upper_camel_case} {}: {e}",
@@ -95,3 +99,7 @@ pub fn generate_to_snake_case(input: proc_macro::TokenStream) -> proc_macro::Tok
     // println!("{gen}");
     gen.into()
 }
+
+/////////
+
+////////////
