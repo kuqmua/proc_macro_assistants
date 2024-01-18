@@ -129,6 +129,8 @@ pub fn to_snake_case(input: proc_macro::TokenStream) -> proc_macro::TokenStream 
     gen.into()
 }
 
+//todo ToScreamingSnakeCase
+
 // #[proc_macro_derive(ParametersUpperCamelCaseTokenStream)]
 // pub fn parameters_upper_camel_case_token_stream(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 //     proc_macro_helpers::panic_location::panic_location();
