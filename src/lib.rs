@@ -1,3 +1,11 @@
+fn generate_function_name_upper_camel_case_token_stream(
+    proc_macro_name_stringified: &str,
+    proc_macro_name_upper_camel_case_ident_stringified: &str,
+) -> proc_macro2::TokenStream {
+    let value = proc_macro_helpers::naming_conventions::ToUpperCamelCase::to_upper_camel_case(&proc_macro_name_stringified);
+    value.parse::<proc_macro2::TokenStream>()
+    .unwrap_or_else(|_| panic!("{proc_macro_name_upper_camel_case_ident_stringified} {value} {}", proc_macro_helpers::global_variables::hardcode::PARSE_PROC_MACRO2_TOKEN_STREAM_FAILED_MESSAGE))
+}
 fn generate_function_name_snake_case_token_stream(
     proc_macro_name_upper_camel_case_stringified: &str,
     proc_macro_name_upper_camel_case_ident_stringified: &str,
@@ -48,8 +56,13 @@ pub fn to_upper_camel_case(input: proc_macro::TokenStream) -> proc_macro::TokenS
         &proc_macro_name_upper_camel_case_stringified,
         &proc_macro_name_upper_camel_case_ident_stringified,
     );
+    let trait_path_token_stream = quote::quote! {proc_macro_helpers::naming_conventions};
+    let proc_macro_name_upper_camel_case_token_stream = generate_function_name_upper_camel_case_token_stream(
+        &proc_macro_name_upper_camel_case_stringified,
+        &proc_macro_name_upper_camel_case_ident_stringified,
+    );
     let gen = quote::quote! {
-        impl proc_macro_helpers::naming_conventions::ToUpperCamelCase for #ident {
+        impl #trait_path_token_stream::#proc_macro_name_upper_camel_case_token_stream for #ident {
             fn #function_name_snake_case_token_stream(&self) -> std::string::String {
                 match self {
                     #(#variants_matching_values_token_stream),*
