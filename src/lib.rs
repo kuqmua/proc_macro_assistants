@@ -14,7 +14,7 @@ pub fn to_upper_camel_case_stringified(input: proc_macro::TokenStream) -> proc_m
     let ast: syn::DeriveInput = syn::parse(input).unwrap_or_else(|e| {
         panic!(
             "{proc_macro_name_upper_camel_case_stringified} {}: {e}",
-            proc_macro_helpers::global_variables::hardcode::AST_PARSE_FAILED
+            proc_macro_common::global_variables::hardcode::AST_PARSE_FAILED
         )
     });
     let ident = &ast.ident;
@@ -75,7 +75,7 @@ pub fn to_snake_case_stringified(input: proc_macro::TokenStream) -> proc_macro::
     let ast: syn::DeriveInput = syn::parse(input).unwrap_or_else(|e| {
         panic!(
             "{proc_macro_name_upper_camel_case_stringified} {}: {e}",
-            proc_macro_helpers::global_variables::hardcode::AST_PARSE_FAILED
+            proc_macro_common::global_variables::hardcode::AST_PARSE_FAILED
         )
     });
     let ident = &ast.ident;
@@ -135,7 +135,7 @@ pub fn to_screaming_snake_case_stringified(input: proc_macro::TokenStream) -> pr
     let ast: syn::DeriveInput = syn::parse(input).unwrap_or_else(|e| {
         panic!(
             "{proc_macro_name_upper_camel_case_stringified} {}: {e}",
-            proc_macro_helpers::global_variables::hardcode::AST_PARSE_FAILED
+            proc_macro_common::global_variables::hardcode::AST_PARSE_FAILED
         )
     });
     let ident = &ast.ident;
