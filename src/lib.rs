@@ -24,12 +24,12 @@ pub fn to_upper_camel_case_stringified(input: proc_macro::TokenStream) -> proc_m
     } else {
         panic!("{proc_macro_name_upper_camel_case_ident_stringified} does work only on structs!");
     };
-    let std_string_string_token_stream = proc_macro_helpers::std_string_string_token_stream();
+    let std_string_string_token_stream = proc_macro_common::std_string_string_token_stream();
     let variants_matching_values_token_stream = data_enum.variants.iter().map(|variant| match &variant.fields {
         syn::Fields::Unit => {
             let variant_ident = &variant.ident;
-            let variant_ident_upper_camel_case_stringified = proc_macro_helpers::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&variant_ident.to_string());
-            let variant_ident_upper_camel_case_quotes_token_stream = proc_macro_helpers::generate_quotes::generate_quotes_token_stream(
+            let variant_ident_upper_camel_case_stringified = proc_macro_common::naming_conventions::ToUpperCamelCaseStringified::to_upper_camel_case_stringified(&variant_ident.to_string());
+            let variant_ident_upper_camel_case_quotes_token_stream = proc_macro_common::generate_quotes::generate_quotes_token_stream(
                 &variant_ident_upper_camel_case_stringified,
                 &proc_macro_name_upper_camel_case_ident_stringified,
             );
@@ -37,12 +37,12 @@ pub fn to_upper_camel_case_stringified(input: proc_macro::TokenStream) -> proc_m
         },
         _ => panic!("{proc_macro_name_upper_camel_case_stringified} supported only syn::Fields::Unit"),
     }).collect::<std::vec::Vec<proc_macro2::TokenStream>>();
-    let function_name_snake_case_token_stream = proc_macro_helpers::generate_function_name_snake_case_token_stream(
+    let function_name_snake_case_token_stream = proc_macro_common::generate_function_name_snake_case_token_stream(
         &proc_macro_name_upper_camel_case_stringified,
         &proc_macro_name_upper_camel_case_ident_stringified,
     );
-    let trait_path_token_stream = proc_macro_helpers::trait_path_token_stream();
-    let proc_macro_name_upper_camel_case_token_stream = proc_macro_helpers::generate_function_name_upper_camel_case_token_stream(
+    let trait_path_token_stream = proc_macro_common::trait_path_token_stream();
+    let proc_macro_name_upper_camel_case_token_stream = proc_macro_common::generate_function_name_upper_camel_case_token_stream(
         &proc_macro_name_upper_camel_case_stringified,
         &proc_macro_name_upper_camel_case_ident_stringified,
     );
@@ -85,12 +85,12 @@ pub fn to_snake_case_stringified(input: proc_macro::TokenStream) -> proc_macro::
     } else {
         panic!("{proc_macro_name_upper_camel_case_ident_stringified} does work only on structs!");
     };
-    let std_string_string_token_stream = proc_macro_helpers::std_string_string_token_stream();
+    let std_string_string_token_stream = proc_macro_common::std_string_string_token_stream();
     let variants_matching_values_token_stream = data_enum.variants.iter().map(|variant| match &variant.fields {
         syn::Fields::Unit => {
             let variant_ident = &variant.ident;
-            let variant_ident_snake_case_stringified = proc_macro_helpers::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&variant_ident.to_string());
-            let variant_ident_snake_case_quotes_token_stream = proc_macro_helpers::generate_quotes::generate_quotes_token_stream(
+            let variant_ident_snake_case_stringified = proc_macro_common::naming_conventions::ToSnakeCaseStringified::to_snake_case_stringified(&variant_ident.to_string());
+            let variant_ident_snake_case_quotes_token_stream = proc_macro_common::generate_quotes::generate_quotes_token_stream(
                 &variant_ident_snake_case_stringified,
                 &proc_macro_name_upper_camel_case_ident_stringified,
             );
@@ -98,12 +98,12 @@ pub fn to_snake_case_stringified(input: proc_macro::TokenStream) -> proc_macro::
         },
         _ => panic!("{proc_macro_name_upper_camel_case_stringified} supported only syn::Fields::Unit"),
     }).collect::<std::vec::Vec<proc_macro2::TokenStream>>();
-    let function_name_snake_case_token_stream = proc_macro_helpers::generate_function_name_snake_case_token_stream(
+    let function_name_snake_case_token_stream = proc_macro_common::generate_function_name_snake_case_token_stream(
         &proc_macro_name_upper_camel_case_stringified,
         &proc_macro_name_upper_camel_case_ident_stringified,
     );
-    let trait_path_token_stream = proc_macro_helpers::trait_path_token_stream();
-    let proc_macro_name_upper_camel_case_token_stream = proc_macro_helpers::generate_function_name_upper_camel_case_token_stream(
+    let trait_path_token_stream = proc_macro_common::trait_path_token_stream();
+    let proc_macro_name_upper_camel_case_token_stream = proc_macro_common::generate_function_name_upper_camel_case_token_stream(
         &proc_macro_name_upper_camel_case_stringified,
         &proc_macro_name_upper_camel_case_ident_stringified,
     );
@@ -145,12 +145,12 @@ pub fn to_screaming_snake_case_stringified(input: proc_macro::TokenStream) -> pr
     } else {
         panic!("{proc_macro_name_upper_camel_case_ident_stringified} does work only on structs!");
     };
-    let std_string_string_token_stream = proc_macro_helpers::std_string_string_token_stream();
+    let std_string_string_token_stream = proc_macro_common::std_string_string_token_stream();
     let variants_matching_values_token_stream = data_enum.variants.iter().map(|variant| match &variant.fields {
         syn::Fields::Unit => {
             let variant_ident = &variant.ident;
-            let variant_ident_snake_case_stringified = proc_macro_helpers::naming_conventions::ToScreamingSnakeCaseStringified::to_screaming_snake_case_stringified(&variant_ident.to_string());
-            let variant_ident_snake_case_quotes_token_stream = proc_macro_helpers::generate_quotes::generate_quotes_token_stream(
+            let variant_ident_snake_case_stringified = proc_macro_common::naming_conventions::ToScreamingSnakeCaseStringified::to_screaming_snake_case_stringified(&variant_ident.to_string());
+            let variant_ident_snake_case_quotes_token_stream = proc_macro_common::generate_quotes::generate_quotes_token_stream(
                 &variant_ident_snake_case_stringified,
                 &proc_macro_name_upper_camel_case_ident_stringified,
             );
@@ -158,12 +158,12 @@ pub fn to_screaming_snake_case_stringified(input: proc_macro::TokenStream) -> pr
         },
         _ => panic!("{proc_macro_name_upper_camel_case_stringified} supported only syn::Fields::Unit"),
     }).collect::<std::vec::Vec<proc_macro2::TokenStream>>();
-    let function_name_snake_case_token_stream = proc_macro_helpers::generate_function_name_snake_case_token_stream(
+    let function_name_snake_case_token_stream = proc_macro_common::generate_function_name_snake_case_token_stream(
         &proc_macro_name_upper_camel_case_stringified,
         &proc_macro_name_upper_camel_case_ident_stringified,
     );
-    let trait_path_token_stream = proc_macro_helpers::trait_path_token_stream();
-    let proc_macro_name_upper_camel_case_token_stream = proc_macro_helpers::generate_function_name_upper_camel_case_token_stream(
+    let trait_path_token_stream = proc_macro_common::trait_path_token_stream();
+    let proc_macro_name_upper_camel_case_token_stream = proc_macro_common::generate_function_name_upper_camel_case_token_stream(
         &proc_macro_name_upper_camel_case_stringified,
         &proc_macro_name_upper_camel_case_ident_stringified,
     );
